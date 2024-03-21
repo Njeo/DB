@@ -69,13 +69,14 @@ CREATE TABLE omraade
 
 CREATE TABLE sete
 (   
-    seteId      INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    seteId      INTEGER NOT NULL,
     seteNr      INTEGER,
     salId       INTEGER,
     radNr       INTEGER,
     omraadeId    INTEGER,
+    PRIMARY KEY (seteId, salId)
     FOREIGN KEY (salId) REFERENCES sal(salId) ON DELETE CASCADE,
-    FOREIGN KEY (omraadeId) REFERENCES omrade(omraadeId)
+    FOREIGN KEY (omraadeId) REFERENCES omraade(omraadeId)
 );
 
 CREATE TABLE teaterstykke
@@ -118,8 +119,10 @@ CREATE TABLE billettkjop
     kjopstidspunkt  TIMESTAMP CURRENT_TIMESTAMP,
     billettantall   INTEGER,
     totalpris       INTEGER,
+    forestillingId INTEGER NOT NULL,
     PRIMARY KEY (kjopsreferanse),
-    FOREIGN KEY (kundeId) REFERENCES kunde(kundeId)
+    FOREIGN KEY (kundeId) REFERENCES kunde(kundeId),
+    FOREIGN KEY (forestillingId) REFERENCES forestilling(forestillingId)
 );
 
 CREATE TABLE billett

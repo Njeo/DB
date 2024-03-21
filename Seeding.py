@@ -1,3 +1,4 @@
+import datetime as dt
 import sqlite3
 
 def seed_ansattstatus(dbpath, status):
@@ -113,16 +114,6 @@ def seed_sete(dbpath, data):
                     (data[0], data[1], data[2], data[3], data[4]))
         conn.commit()
 
-"""def seed_sete(dbpath, data):
-    with sqlite3.connect(dbpath) as conn:
-        cur = conn.cursor()
-
-    cur.execute("INSERT INTO sete (seteId, seteNr, salId, radNr, omraadeId) VALUES (?,?,?,?,?)",
-                (data[0], data[1], data[2], data[3], data[4]))
-    
-    conn.commit()
-    conn.close()"""
-
 def seed_prisklasse(dbpath, data):
     with sqlite3.connect(dbpath) as conn:
         cur = conn.cursor()
@@ -147,8 +138,8 @@ def seed_billettkjøp(dbpath, data):
     with sqlite3.connect(dbpath) as conn:
         cur = conn.cursor()
 
-    cur.execute("INSERT INTO billettkjøp (kjøpsreferanse, kundeId, billettantall, totalpris) VALUES (?,?,?,?)",
-                (data[0], data[1], data[2], data[3]))
+    cur.execute("INSERT INTO billettkjop (kjopsreferanse, kundeId, kjopstidspunkt, billettantall, totalpris, forestillingId) VALUES (?,?,?,?,?,?)",
+                (data[0], data[1], data[2], data[3], data[4], data[5]))
 
     conn.commit()
     conn.close()
@@ -157,7 +148,7 @@ def seed_billett(dbpath, data):
     with sqlite3.connect(dbpath) as conn:
         cur = conn.cursor()
 
-    cur.execute("INSERT INTO billett (tittel, prisklasseNavn, seteId, kjøpsreferanse) VALUES (?,?,?,?)",
+    cur.execute("INSERT INTO billett (tittel, prisklasseNavn, seteId, kjopsreferanse) VALUES (?,?,?,?)",
                 (data[0], data[1], data[2], data[3]))
 
     conn.commit()
@@ -229,8 +220,25 @@ def seed_data(dbpath):
         (2, 'Selma', 'selma@example.com'),
         (2,"Dikt Tøresen","dikt@example.com"),
         (2,"Ann settelsen", "Ann@example.com"),
-    ]
+        (3, "Ida", "ida@example.com"),
+        (2, "Frida", "frida@example.com"),
+        (1, "Isabella", "isabella@example.com"),
+        (3, "Isabelle", "isabelle@example.com"),
+        (3, "Mads", "mads@example.com"),
+        (1, "Mats", "mats@example.com"),
+        (2, "Marius", "marius@example.com"),
+        (2, "Magnus", "magnus@example.com"),
 
+        (3, "Anne", "anne@example.com"),
+        (2, "Anette", "anette@example.com"),
+        (1, "Anine", "anine@example.com"),
+        (2, "Annie", "annie@example.com"),
+        (3, "Anne Grete", "annegrete@example.com"),
+        (2, "Anita", "anita@example.com"),
+        (1, "Arnold", "arnold@example.com"),
+        (2, "Arne", "arne@example.com"),
+        (3, "Andreas", "andreas@example.com"),
+    ]
 
     roles = [
         (1, 1, "Håkon Håkonson"),
@@ -489,12 +497,132 @@ def seed_data(dbpath):
     ]
     
     ansatte = [
-        (16,9)
+        (16,1),
+        (17,2),
+        (18,3),
+        (19,4),
+        (20,5),
+        (21,6),
+        (22,7),
+        (23,8),
+        (24,9),
+        (25,10),        
+        (26,11),    
+        (27,12),    
+        (28,13),    
+        (29,14),    
+        (30,15),    
+        (31,16),    
+        (32,17),    
+        (33,18),    
     ]
 
+    biletter_hovedscenen = [
+    ("Kongsemnene", "Ordinær", 11, 1),
+    ("Kongsemnene", "Ordinær", 12, 1),
+    ("Kongsemnene", "Ordinær", 13, 1),
+    ("Kongsemnene", "Ordinær", 14, 1),
+    ("Kongsemnene", "Ordinær", 15, 1),
+    ("Kongsemnene", "Ordinær", 16, 1),
+    ("Kongsemnene", "Ordinær", 17, 1),
+    ("Kongsemnene", "Ordinær", 18, 1),
+    ("Kongsemnene", "Ordinær", 19, 1),
+    ("Kongsemnene", "Ordinær", 20, 1),
+    ("Kongsemnene", "Ordinær", 21, 1),
+    ("Kongsemnene", "Ordinær", 22, 1),
+    ("Kongsemnene", "Ordinær", 23, 1),
+    ("Kongsemnene", "Ordinær", 24, 1),
+    ("Kongsemnene", "Ordinær", 25, 1),
+    ("Kongsemnene", "Ordinær", 26, 1),
+    ("Kongsemnene", "Ordinær", 27, 1),
+    ("Kongsemnene", "Ordinær", 28, 1),
+    ("Kongsemnene", "Ordinær", 29, 1),
+    ("Kongsemnene", "Ordinær", 30, 1),
+    ("Kongsemnene", "Ordinær", 31, 1),
+    ("Kongsemnene", "Ordinær", 32, 1),
+    ("Kongsemnene", "Ordinær", 33, 1),
+    ("Kongsemnene", "Ordinær", 34, 1),
+    ("Kongsemnene", "Ordinær", 35, 1),
+    ("Kongsemnene", "Ordinær", 36, 1),
+    ("Kongsemnene", "Ordinær", 37, 1),
+    ("Kongsemnene", "Ordinær", 38, 1),
+    ("Kongsemnene", "Ordinær", 39, 1),
+    ("Kongsemnene", "Ordinær", 40, 1),
+    ("Kongsemnene", "Ordinær", 41, 1),
+    ("Kongsemnene", "Ordinær", 42, 1),
+    ("Kongsemnene", "Ordinær", 43, 1),
+    ("Kongsemnene", "Ordinær", 44, 1),
+    ("Kongsemnene", "Ordinær", 45, 1),
+    ("Kongsemnene", "Ordinær", 46, 1),
+    ("Kongsemnene", "Ordinær", 47, 1),
+    ("Kongsemnene", "Ordinær", 66, 1),
+    ("Kongsemnene", "Ordinær", 66, 1),
+    ("Kongsemnene", "Ordinær", 67, 1),
+    ("Kongsemnene", "Ordinær", 68, 1),
+    ("Kongsemnene", "Ordinær", 69, 1),
+    ("Kongsemnene", "Ordinær", 70, 1),
+    ("Kongsemnene", "Ordinær", 71, 1),
+    ("Kongsemnene", "Ordinær", 72, 1),
+    ("Kongsemnene", "Ordinær", 73, 1),
+    ("Kongsemnene", "Ordinær", 74, 1),
+    ("Kongsemnene", "Ordinær", 75, 1),
+    ("Kongsemnene", "Ordinær", 94, 1),
+    ("Kongsemnene", "Ordinær", 95, 1),
+    ("Kongsemnene", "Ordinær", 96, 1),
+    ("Kongsemnene", "Ordinær", 97, 1),
+    ("Kongsemnene", "Ordinær", 98, 1),
+    ("Kongsemnene", "Ordinær", 99, 1),
+    ("Kongsemnene", "Ordinær", 100, 1),
+    ("Kongsemnene", "Ordinær", 101, 1),
+    ("Kongsemnene", "Ordinær", 127, 1),
+    ("Kongsemnene", "Ordinær", 128, 1),
+    ("Kongsemnene", "Ordinær", 154, 1),
+    ("Kongsemnene", "Ordinær", 155, 1),
+    ("Kongsemnene", "Ordinær", 182, 1),
+    ("Kongsemnene", "Ordinær", 183, 1),
+    ("Kongsemnene", "Ordinær", 337, 1),
+    ("Kongsemnene", "Ordinær", 338, 1),
+    ("Kongsemnene", "Ordinær", 339, 1),
+    ("Kongsemnene", "Ordinær", 347, 1),
+    ("Kongsemnene", "Ordinær", 375, 1),
+    ("Kongsemnene", "Ordinær", 398, 1),
+    ("Kongsemnene", "Ordinær", 399, 1),
+    ("Kongsemnene", "Ordinær", 400, 1),
+    ("Kongsemnene", "Ordinær", 403, 1),
+    ("Kongsemnene", "Ordinær", 431, 1)
+]
 
-    
+   
+    biletter_gamlescenen = [
 
+        ("Størst av alt er kjærligheten", "Ordinær", 1, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 2, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 8, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 9, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 19, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 20, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 21, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 27, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 38, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 39, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 43, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 55, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 56, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 59, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 60, 1),
+
+        ("Størst av alt er kjærligheten", "Ordinær", 77, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 78, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 95, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 112, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 113, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 130, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 147, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 164, 1),
+
+        ("Størst av alt er kjærligheten", "Ordinær", 226, 1),
+        ("Størst av alt er kjærligheten", "Ordinær", 227, 1)
+    ]
 
     seed_ansattstatus(dbpath, status)
 
@@ -564,6 +692,14 @@ def seed_data(dbpath):
 
     for ansatt in ansatte:
         seed_ansatt(dbpath, ansatt)
+
+    seed_billettkjøp(dbpath, (1, 1, dt.datetime(year=2024, month=2, day=1), 1, 0, 1))
+
+    for billett in biletter_hovedscenen:
+        seed_billett(dbpath, billett)
+
+    for billett in biletter_gamlescenen:
+        seed_billett(dbpath, billett)
 
     #sfor arbeidsoppgave in arbeidsoppgaver:
 
